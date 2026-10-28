@@ -139,9 +139,10 @@ finally {
 
 
 class EyeDisplay:
-    def __init__(self, dog):
+    def __init__(self, dog, idle_expression=None):
         self.dog = dog
         self.last_kind = None
+        self.idle_expression = idle_expression
 
     def clear(self):
         self.last_kind = None
@@ -154,15 +155,18 @@ class EyeDisplay:
 
     def restore(self):
         if self.last_kind is None:
-            blank = bytearray(8)
-            self.dog.headLEDDraw(blank, blank)
+            if self.idle_expression is None:
+                blank = bytearray(8)
+                self.dog.headLEDDraw(blank, blank)
+            else:
+                self.dog.headLEDExp(self.idle_expression)
         else:
             left, right = EYES[self.last_kind]
 
-            # 양쪽 눈의 위치를 교환
+            # 도안의 첫 글자를 왼쪽 눈, 둘째 글자를 오른쪽 눈에 표시합니다.
             self.dog.headLEDDraw(
-                bytearray(right),
-                bytearray(left)
+                bytearray(left),
+                bytearray(right)
             )
 
 

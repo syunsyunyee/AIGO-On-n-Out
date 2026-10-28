@@ -2,11 +2,19 @@
 
 ON 순찰·재난 안내와 OUT 배송서비스의 전체 코드, Windows 연결 도우미, 수신 micro:bit HEX를 포함한 GitHub 업로드용 통합본입니다.
 
+## 처음 사용하는 PC · IN + ON/OUT 한 번에 설치
+
+[AIGO 전체 통합 ZIP](https://github.com/Yoon-nana/AIGO-On-n-Out/releases/latest/download/AIGO_All_In_One.zip)을 받아 모두 압축 푼 뒤 최상위 폴더의 `Install_All.cmd`를 한 번 실행하세요. Python 3.10~3.14와 Windows `py` 실행기가 필요합니다. 이후 같은 폴더의 `Start_ON_OUT.cmd` 또는 `Start_IN.cmd`를 실행합니다. 두 서비스는 한 `.venv`를 공유합니다.
+
 ## 이번 통합본
+
+- ON 순찰은 화면에서 정한 S·A·B·C 좌표와 순서를 따라 상대 회전 후 정해진 시간만큼 전진합니다. 화면 위치는 주행 시간으로 계산한 예상 위치입니다.
+- 순찰 중 몸체 LED는 초록색, 눈 LED는 초롱초롱 표정으로 켜집니다. 멧돼지 이미지로 학습한 CLASS1을 연속 인식하면 한 번 짖고 관제 알림에 남기며 순찰을 이어갑니다.
+- 재난 대피 안내는 선택한 지역을 순서대로 방문합니다. 각 지역에서 인물 인식을 10초씩 최대 5회 시도하며, 찾지 못해도 다음 선택 지역을 방문합니다. 찾으면 S까지 안내한 뒤 다음 지역으로 갑니다.
 
 - 브라우저 탭 제목·상단·하단 이름: **ON & OUT**.
 - AIGO_Install.ps1과 AIGO_Launch.ps1을 모두 포함했습니다. 확장자는 .psl이 아니라 마지막 글자가 숫자 1인 **.ps1**입니다.
-- PS1 누락 안내, 최초 실행 설치, 폴더 이동 후 설정 재생성, Python 3.10~3.13 확인을 포함합니다.
+- PS1 누락 안내, 최초 실행 설치, 폴더 이동 후 설정 재생성, Python 3.10~3.14 확인을 포함합니다.
 - ON 수신 오류를 화면에 계속 표시하고 일시적인 시리얼 읽기 오류를 복구합니다.
 - microbit-receiver-check.html: ON 프레임·Python 서버와 별개로 USB만 확인하는 단독 진단 파일.
 - receiver_test_original.hex: 제공받은 수신 테스트 HEX의 내용 변경 없는 복사본.
@@ -40,7 +48,7 @@ index.html과 pawcare_control.html은 같은 화면입니다. 수정 시 두 파
 
 ## Windows PC 설치·실행
 
-1. Python 3.13과 py 실행기를 설치합니다. 설치 프로그램은 기존 Python 3.10~3.13도 확인합니다.
+1. Python 3.10~3.14 중 하나와 py 실행기를 설치합니다. 설치 프로그램은 3.14부터 우선 확인합니다.
 2. 프로젝트 전체를 압축 푼 폴더에서 **AIGO_Install.cmd**를 한 번 실행합니다. 최초 설치에는 인터넷이 필요합니다.
 3. **AIGO_Start.cmd**를 실행합니다. 설치가 없으면 설치를 이어서 진행합니다.
 4. 자동으로 열리는 **http://127.0.0.1:8765/** 로컬 관제에서 사용합니다.
@@ -108,9 +116,6 @@ E1은 지진 재난 테스트 신호입니다. 로봇을 운행 중인 상태에
 
 **이 ZIP의 복사본만 수정했습니다. 다른 사람의 GitHub 저장소나 사이트는 변경하지 않았습니다.**
 
-## 출처
+## 수신 테스트 HEX
 
-- 기준 저장소: https://github.com/Yoon-nana/pawcare-delivery-control
-- 기준 커밋: 8529b0da88d863059ed78ebd1c12939fedb1844c
-- 기존 README의 원본 표기: https://github.com/kimyuchanm2-hash/pawcare-delivery-control
-- 수신 테스트 HEX: 사용자 제공 파일을 내용 변경 없이 포함.
+`receiver_test_original.hex`는 제공받은 테스트 파일을 내용 변경 없이 포함했습니다.
